@@ -1,10 +1,14 @@
 import express from "express";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import db from "./config/connection.js";
 import { typeDefs, resolvers } from "./schemas/index.js";
 import { authMiddleware } from "./services/auth.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;

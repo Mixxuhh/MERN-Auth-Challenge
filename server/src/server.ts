@@ -38,6 +38,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
+// Wait for database connection before starting the server
 db.once("open", () => {
-  app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
+  app.listen(PORT, () => {
+    console.log(`🌍 Now listening on port ${PORT}`);
+    console.log(`📚 MongoDB connected successfully`);
+  });
 });

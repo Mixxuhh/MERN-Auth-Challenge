@@ -9,7 +9,7 @@ import Auth from "../utils/auth";
 import type { User } from "../models/User";
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
-const LoginForm = ({}: { handleModalClose: () => void }) => {
+const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
   const [userFormData, setUserFormData] = useState<User>({
     username: "",
     email: "",
@@ -42,6 +42,7 @@ const LoginForm = ({}: { handleModalClose: () => void }) => {
       });
 
       Auth.login(data.login.token);
+      handleModalClose(); // Close the modal after successful login
     } catch (err) {
       console.error(err);
       setShowAlert(true);

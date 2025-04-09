@@ -8,7 +8,7 @@ import Auth from "../utils/auth";
 import type { User } from "../models/User";
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
-const SignupForm = ({}: { handleModalClose: () => void }) => {
+const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
   // set initial form state
   const [userFormData, setUserFormData] = useState<User>({
     username: "",
@@ -44,6 +44,7 @@ const SignupForm = ({}: { handleModalClose: () => void }) => {
       });
 
       Auth.login(data.addUser.token);
+      handleModalClose(); // Close the modal after successful signup
     } catch (err) {
       console.error(err);
       setShowAlert(true);
